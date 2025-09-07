@@ -45,7 +45,7 @@ $result = $conn->query("SELECT * FROM book");
 
     <div class="content">
         <h2>Manage Books</h2>
-        <table border="1" cellpadding="8" cellspacing="0">
+        <table>
             <tr>
                 <th>ID</th>
                 <th>Book Name</th>
@@ -65,7 +65,7 @@ $result = $conn->query("SELECT * FROM book");
                 <td><?php echo $row['bookPrice']; ?></td>
                 <td>
                     <a href="editBook.php?id=<?php echo $row['id']; ?>">Edit</a> | 
-                    <a href="manageBook.php?delete=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure?')">Delete</a>
+                    <a href="manageBook.php?delete=<?php echo $row['id']; ?>">Delete</a>
                 </td>
             </tr>
             <?php } ?>
