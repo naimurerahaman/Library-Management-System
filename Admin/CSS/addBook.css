@@ -107,3 +107,11 @@ button {
 button:hover {
   background: #1f6391;
 }
+
+p {
+    margin-top: 10px;
+    
+    color: rgb(0, 248, 25);
+    font-size: 20px;
+    text-align: center;
+}
