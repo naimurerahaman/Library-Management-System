@@ -1,0 +1,84 @@
+/* General page style */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fc;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Container */
+.container {
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+    width: 400px;
+    text-align: center;
+}
+
+/* Heading */
+.container h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Form labels */
+form label {
+    display: block;
+    text-align: left;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #444;
+}
+
+/* Form inputs */
+form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* Submit button */
+form button {
+    width: 100%;
+    padding: 12px;
+    margin-left: 10px;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+/* Message text */
+p {
+    margin-top: 10px;
+    color: red;
+    font-size: 14px;
+}
+.content {
+  width: 500px;
+  margin: 50px auto;
+  background: white;
+  padding: 70px;
+  border-radius: 6px;
+  box-shadow: 0px 0px 8px rgba(0,0,0,0.1);
+}
+
+.content h2 {
+  text-align: center;
+  margin-top: 5px;
+}

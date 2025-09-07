@@ -1,0 +1,108 @@
+body {
+  background-image: url("../Photos/LoginPage.jpeg");
+  background-repeat: no-repeat;
+  background-size: 2000px 1500px;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+
+.login-container {
+  
+  background: #fff;
+  padding: 30px 40px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  width: 350px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 150px;
+  
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 24px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  background: #e67e22;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #cf6d17;
+}
+
+.extra-links {
+  text-align: left;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.extra-links a {
+  color: #e67e22;
+  text-decoration: none;
+}
+
+.extra-links a:hover {
+  text-decoration: underline;
+}
+
+.navbar {
+   position: sticky;   
+   top: 0;
+   width: 100%;
+   background-color: #1f1f1f;
+   overflow: hidden;
+   z-index: 1000;
+}
+.navbar a {
+   float: left;
+   display: block;
+   color: white;
+   text-align: center;
+   padding: 14px 20px;
+   text-decoration: none;
+   font-size: 16px;
+}
+.navbar a:hover {
+    background-color: #e67e22; 
+    color: white;
+}
+
+.error {
+      color: red;
+      margin-top: 10px;
+      font-size: 14px;
+}
+.success {
+      color: green;
+      margin-top: 10px;
+      font-size: 14px;
+}
