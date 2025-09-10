@@ -91,12 +91,22 @@ th {
   color: white;
 }
 
-td a {
-  color: #3498db;
-  text-decoration: none;
-  font-weight: bold;
+.btn { 
+ text-decoration: none;
+ margin: 2px; 
+ border: none; 
+ cursor: pointer; 
+ transition-duration: 0.35s;
 }
 
-td a:hover {
-  text-decoration: underline;
+.btn:hover {
+   
+    font-weight: bold;
+  }
+.edit { 
+    color: #3498db;
+}
+
+.delete {  
+    color: rgb(255, 0, 0); 
 }

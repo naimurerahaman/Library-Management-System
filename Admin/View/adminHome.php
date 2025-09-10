@@ -1,3 +1,18 @@
+<?php
+include "config.php"; // 🔹 Make sure this connects to your DB
+
+// 🔹 Count how many books are listed
+$bookCount = $conn->query("SELECT COUNT(*) AS total FROM book")->fetch_assoc()['total'];
+
+// 🔹 Count how many books are not returned yet
+$notReturnedCount = $conn->query("SELECT COUNT(*) AS total FROM issued_books WHERE status='borrowed'")->fetch_assoc()['total'];
+
+// 🔹 Count registered users
+$userCount = $conn->query("SELECT COUNT(*) AS total FROM register")->fetch_assoc()['total'];
+
+// 🔹 Count listed categories
+$categoryCount = $conn->query("SELECT COUNT(*) AS total FROM category")->fetch_assoc()['total'];
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,60 +58,21 @@
                         <th>Book Listed</th>
                         <th>Book Not Returned Yet</th>
                         <th>Registered Users</th>
-                        <th>Authors Listed</th>
                         <th>Listed Categories</th>
                     </tr>
                 </thead>
-                <thead>
+                <tbody>
                     <tr>
-                        <th>-</th>
-                        <th>-</th>
-                        <th>-</th>
-                        <th>-</th>
-                        <th>-</th>
+                        <td><?php echo $bookCount; ?></td>
+                        <td><?php echo $notReturnedCount; ?></td>
+                        <td><?php echo $userCount; ?></td>
+                        <td><?php echo $categoryCount; ?></td>
                     </tr>
-                </thead>
-                <thead>
-                    <tr>
-                        <th>-</th>
-                        <th>-</th>
-                        <th>-</th>
-                        <th>-</th>
-                        <th>-</th>
-                    </tr>
-                </thead>
-                <thead>
-                    <tr>
-                        <th>-</th>
-                        <th>-</th>
-                        <th>-</th>
-                        <th>-</th>
-                        <th>-</th>
-                    </tr>
-                </thead>
-                <thead>
-                    <tr>
-                        <th>-</th>
-                        <th>-</th>
-                        <th>-</th>
-                        <th>-</th>
-                        <th>-</th>
-                    </tr>
-                </thead>
-                <thead>
-                    <tr>
-                        <th>-</th>
-                        <th>-</th>
-                        <th>-</th>
-                        <th>-</th>
-                        <th>-</th>
-                    </tr>
-                </thead>
+                </tbody>
             </table>
         </div>
     </div>
 
 <script src="../JS/sideBar.js"></script>
-
 </body>
 </html>
