@@ -135,8 +135,6 @@ if (isset($_GET['student_id'])) {
                     </tr>
                 <?php } ?>
             </table>
-
-            <a href="deleteStudent.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete this student?');">Delete</a>
         <?php } ?>
     </div>
     <script src="../JS/sideBar.js"></script>
