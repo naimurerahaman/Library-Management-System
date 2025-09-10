@@ -14,14 +14,25 @@ if (isset($_GET['id'])) {
         $bookNumber = $_POST['bookNumber'];
         $bookPrice = $_POST['bookPrice'];
 
+        
+        $coverPhoto = $book['coverPhoto']; 
+        if (!empty($_FILES['coverPhoto']['name'])) {
+            $targetDir = "../uploads/";
+            if (!is_dir($targetDir)) {
+                mkdir($targetDir, 0777, true);
+            }
+            $coverPhoto = $targetDir . basename($_FILES["coverPhoto"]["name"]);
+            move_uploaded_file($_FILES["coverPhoto"]["tmp_name"], $coverPhoto);
+        }
+
         $sql = "UPDATE book SET bookName='$bookName', authorId='$authorId', categoryId='$categoryId',
-                bookNumber='$bookNumber', bookPrice='$bookPrice' WHERE id=$id";
+                bookNumber='$bookNumber', bookPrice='$bookPrice', coverPhoto='$coverPhoto' WHERE id=$id";
 
         if ($conn->query($sql) === TRUE) {
             header("Location: manageBook.php");
             exit();
         } else {
-            $message = "❌ Error: " . $conn->error;
+            $message = " Error: " . $conn->error;
         }
     }
 }
@@ -34,12 +45,10 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="../CSS/sideBar.css">
 </head>
 <body>
-    <div class="logout">
-        <a href="login.php" class="btn-logout"><button>Log Out</button></a>
-    </div>
-
-    <div class="sidebar">
-        <a href="adminHome.php">Dashboard</a>
+    <div class="logout"><a href="login.php" class="btn-logout"><button>Log Out</button></a></div>
+    <div class="sidebar"> 
+         <a href="adminHome.php">Dashboard</a>
+        
         <div class="dropdown">
             <a href="#" class="dropdown-btn">Books</a>
             <div class="dropdown-content">
@@ -58,28 +67,36 @@ if (isset($_GET['id'])) {
         <a href="viewStudentDetails.php">View Student Details</a>
         <a href="changePassAdmin.php">Change Password</a>
     </div>
+
     <div class="content">
-    <h2>Edit Book</h2>
-    <form method="POST">
-        <label>Book Name:</label>
-        <input type="text" name="bookName" value="<?php echo $book['bookName']; ?>"><br>
+        <h2>Edit Book</h2>
+        <form method="POST" enctype="multipart/form-data"> 
+            <label>Book Name:</label>
+            <input type="text" name="bookName" value="<?php echo $book['bookName']; ?>"><br>
 
-        <label>Author ID:</label>
-        <input type="text" name="authorId" value="<?php echo $book['authorId']; ?>"><br>
+            <label>Author ID:</label>
+            <input type="text" name="authorId" value="<?php echo $book['authorId']; ?>"><br>
 
-        <label>Category ID:</label>
-        <input type="text" name="categoryId" value="<?php echo $book['categoryId']; ?>"><br>
+            <label>Category ID:</label>
+            <input type="text" name="categoryId" value="<?php echo $book['categoryId']; ?>"><br>
 
-        <label>Book Number:</label>
-        <input type="text" name="bookNumber" value="<?php echo $book['bookNumber']; ?>"><br>
+            <label>Book Number:</label>
+            <input type="text" name="bookNumber" value="<?php echo $book['bookNumber']; ?>"><br>
 
-        <label>Book Price:</label>
-        <input type="text" name="bookPrice" value="<?php echo $book['bookPrice']; ?>"><br>
+            <label>Book Price:</label>
+            <input type="text" name="bookPrice" value="<?php echo $book['bookPrice']; ?>"><br>
 
-        <button type="submit">Update Book</button>
-    </form>
-    <p><?php echo $message; ?></p>
+            <label>Cover Photo:</label>
+            <input type="file" name="coverPhoto">
+            <?php if (!empty($book['coverPhoto'])): ?>
+                <img class="coverPhoto" src="<?php echo $book['coverPhoto']; ?>" width="150">
+            <?php endif; ?>
+
+            <button type="submit">Update Book</button>
+        </form>
+        <p><?php echo $message; ?></p>
     </div>
-     <script src="../JS/sideBar.js"></script>
+        <script src="../JS/sideBar.js"></script>
+
 </body>
 </html>

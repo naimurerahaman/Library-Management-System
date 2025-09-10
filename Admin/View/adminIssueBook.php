@@ -1,44 +1,44 @@
 <?php
+include "config.php"; // DB connection
 session_start();
 
 $message = "";
 
+// Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $studentName = htmlspecialchars($_POST['studentName'] ?? '');
-    $studentId   = htmlspecialchars($_POST['studentId'] ?? '');
-    $bookTitle   = htmlspecialchars($_POST['bookTitle'] ?? '');
+    $student_id = $_POST['student_id'];
+    $book_id = $_POST['book_id'];
 
-    if (empty($studentName) || empty($studentId) || empty($bookTitle)) {
-        $_SESSION['issue_msg'] = "Please fill in all fields.";
-        header("Location: adminIssueBook.php");
-        exit();
+    // Insert into issued_books table
+    $sql = "INSERT INTO issued_books (student_id, book_id, status) VALUES ('$student_id', '$book_id', 'borrowed')";
+    if ($conn->query($sql) === TRUE) {
+        $message = "Book issued successfully!";
     } else {
-        $_SESSION['issue_status'] = "Book issued successfully";
-        header("Location: adminManageIssuedBook.php");
-        exit();
+        $message = "Error: " . $conn->error;
     }
 }
 
-if (isset($_SESSION['issue_msg'])) {
-    $message = $_SESSION['issue_msg'];
-    unset($_SESSION['issue_msg']);
-}
+// Fetch students for dropdown
+$students = $conn->query("SELECT id, fullname FROM register");
+
+// Fetch books for dropdown
+$books = $conn->query("SELECT id, bookName FROM book");
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Issue a New Book</title>
-    <link rel="stylesheet" href="../CSS/adminIssueBook.css">
+    <title>Issue Book</title>
     <link rel="stylesheet" href="../CSS/sideBar.css">
+    <link rel="stylesheet" href="../CSS/adminIssueBook.css">
 </head>
 <body>
-  <div class="logout">
+    <div class="logout">
         <a href="login.php" class="btn-logout"><button>Log Out</button></a>
     </div>
 
     <div class="sidebar">
         <a href="adminHome.php">Dashboard</a>
-        
         <div class="dropdown">
             <a href="#" class="dropdown-btn">Books</a>
             <div class="dropdown-content">
@@ -47,7 +47,7 @@ if (isset($_SESSION['issue_msg'])) {
             </div>
         </div>
         <div class="dropdown">
-            <a href="#" class="dropdown-btn">Categories</a> 
+            <a href="#" class="dropdown-btn">Categories</a>
             <div class="dropdown-content">
                 <a href="addCategory.php">Add Category</a>
                 <a href="manageCategory.php">Manage Category</a>
@@ -58,26 +58,30 @@ if (isset($_SESSION['issue_msg'])) {
         <a href="changePassAdmin.php">Change Password</a>
     </div>
 
-    <div class="container"> 
-        <h2>Issue A New Book</h2>
-        <form action="adminIssueBook.php" method="POST">
-            <label>Student Name:</label>
-            <input type="text" id="studentName" name="studentName">
-            
-            <label>Student ID</label>
-            <input type="text" id="studentId" name="studentId">
-            
-            <label>Book Title:</label>
-            <input type="text" id="bookTitle" name="bookTitle">
-            
-            <button type="submit" class="issue-btn">Issue Book</button>
+    <div class="content">
+        <h2>Issue a Book</h2>
+        <form method="POST">
+            <label for="student">Select Student:</label>
+            <select name="student_id" required>
+                <option value="">-- Select Student --</option>
+                <?php while ($row = $students->fetch_assoc()) { ?>
+                    <option value="<?php echo $row['id']; ?>"><?php echo $row['fullname']; ?></option>
+                <?php } ?>
+            </select>
+
+            <label for="book">Select Book:</label>
+            <select name="book_id" required>
+                <option value="">-- Select Book --</option>
+                <?php while ($row = $books->fetch_assoc()) { ?>
+                    <option value="<?php echo $row['id']; ?>"><?php echo $row['bookName']; ?></option>
+                <?php } ?>
+            </select>
+
+            <button type="submit">Issue Book</button>
         </form>
 
-        <?php if (!empty($message)): ?>
-            <p class="error-message"><?php echo $message; ?></p>
-        <?php endif; ?>
+        <p style="color: green;"><?php echo $message; ?></p>
     </div>
-
-    <script src="../JS/sideBar.js"></script>
+     <script src="../JS/sideBar.js"></script>
 </body>
 </html>
