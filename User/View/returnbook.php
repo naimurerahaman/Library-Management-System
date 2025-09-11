@@ -21,6 +21,7 @@
     <div class="sidebar">
       <a href="viewprofile.php">View Profile</a>
       <a href="searchbook.php">Search Book</a>
+      <a href="viewborrowbook.php">View Borrow Book</a>
       <a href="borrow.php">Borrow Book Request</a>
       <a href="returnbook.php">Return Book</a>
       <a href="feedback.php">Feedback</a>

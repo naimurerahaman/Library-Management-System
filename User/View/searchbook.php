@@ -3,31 +3,33 @@ include "config.php";
 session_start();
 $success = $error = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["borrow"])) {
-    $book_title = $_POST["book_title"];
-    $book_author = $_POST["book_author"];
-    $book_category = $_POST["book_category"];
-    $book_isbn = $_POST["book_isbn"];
-    if (empty($book_title) || empty($book_author) || empty($book_category) || empty($book_isbn)) {
-        $error = "Book details are missing.";
-    } else {
-        $sql = "INSERT INTO borrow (title, author, category, isbn) 
+  $book_title = $_POST["book_title"];
+  $book_author = $_POST["book_author"];
+  $book_category = $_POST["book_category"];
+  $book_isbn = $_POST["book_isbn"];
+  if (empty($book_title) || empty($book_author) || empty($book_category) || empty($book_isbn)) {
+    $error = "Book details are missing.";
+  } else {
+    $sql = "INSERT INTO borrow (title, author, category, isbn) 
                 VALUES ('$book_title', '$book_author', '$book_category', '$book_isbn')";
-        if ($conn->query($sql) === TRUE) {
-            $success = "Book Borrow Request Sent Successfully.";
-        } else {
-            $error = "Error: " . $conn->error;
-        }
+    if ($conn->query($sql) === TRUE) {
+      $success = "Book Borrow Request Sent Successfully.";
+    } else {
+      $error = "Error: " . $conn->error;
     }
+  }
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Search & Borrow</title>
   <link rel="stylesheet" href="../CSS/searchbook.css" />
 </head>
+
 <body>
   <div class="navbar">
     <h2>WELCOME ! User Dashboard</h2>
@@ -40,6 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["borrow"])) {
     <div class="sidebar">
       <a href="viewprofile.php">View Profile</a>
       <a href="searchbook.php">Search Book</a>
+      <a href="viewborrowbook.php">View Borrow Book</a>
       <a href="borrow.php">Borrow Book Request</a>
       <a href="returnbook.php">Return Book</a>
       <a href="feedback.php">Feedback</a>
@@ -184,4 +187,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["borrow"])) {
   </div>
   <script src="../Js/searchbook.js"></script>
 </body>
+
 </html>
