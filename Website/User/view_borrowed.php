@@ -11,12 +11,12 @@ if (!isset($_SESSION['user_id'])) {
 $name = $_SESSION['fullname'] ?? $_SESSION['username'];
 $user_id = $_SESSION['user_id'];
 
-// Handle the "Return" action
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['return'])) {
     $borrow_id = $_POST['borrow_id'];
     $return_date = date("Y-m-d");
 
-    // Update borrow table
+
     $stmt = $conn->prepare("UPDATE borrow 
                             SET status = 'returned', return_date = ? 
                             WHERE id = ? AND user_id = ? AND status = 'borrowed'");
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['return'])) {
     $stmt->close();
 }
 
-// Fetch all borrowed books for the current user
+
 $sql = "SELECT br.id, br.borrow_date, b.title, b.isbn, b.author, b.category
         FROM borrow br
         JOIN books b ON br.book_id = b.id
@@ -45,11 +45,13 @@ $stmt->close();
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Borrowed Books</title>
     <link rel="stylesheet" href="../CSS/bar.css">
     <link rel="stylesheet" href="../CSS/viewborrowbook.css">
 </head>
+
 <body>
     <div class="navbar">
         <h2>WELCOME <span><?php echo htmlspecialchars($name); ?></span> !</h2>
@@ -60,16 +62,16 @@ $stmt->close();
     </div>
     <div class="container-sidebar">
         <div class="sidebar">
-            <a href="userdashboard.php" >Dashboard</a>
-            <a href="editprofile.php" >Edit Profile</a>
+            <a href="userdashboard.php">Dashboard</a>
+            <a href="editprofile.php">Edit Profile</a>
             <a href="search_book.php">Search Book</a>
             <a href="view_borrowed.php" class="active">View Borrow Book</a>
             <a href="borrow_history.php">Borrow History</a>
             <a href="feedback.php">Feedback</a>
         </div>
-        <div class="main-content"> 
+        <div class="main-content">
             <h2>My Borrowed Books</h2>
-            
+
             <table border="1" cellpadding="5">
                 <thead>
                     <tr>
@@ -83,14 +85,14 @@ $stmt->close();
                 </thead>
                 <tbody>
                     <?php if ($result->num_rows > 0): ?>
-                        <?php while($row = $result->fetch_assoc()): ?>
+                        <?php while ($row = $result->fetch_assoc()): ?>
                             <tr>
                                 <td><?= htmlspecialchars($row['title']) ?></td>
                                 <td><?= htmlspecialchars($row['author']) ?></td>
                                 <td><?= htmlspecialchars($row['category']) ?></td>
                                 <td><?= htmlspecialchars($row['isbn']) ?></td>
                                 <td><?= htmlspecialchars($row['borrow_date']) ?></td>
-                                
+
 
                                 <td>
                                     <form method="post">
@@ -111,7 +113,8 @@ $stmt->close();
                 <p class="message"><?php echo htmlspecialchars($message); ?></p>
             <?php endif; ?>
         </div>
-        
+
     </div>
 </body>
+
 </html>

@@ -2,12 +2,10 @@
 include "config.php";
 $message = "";
 
-// Fetch authors and categories
 $authors_result = $conn->query("SELECT id, authorName FROM author ORDER BY authorName ASC");
 $categories_result = $conn->query("SELECT id, categoryName FROM category ORDER BY categoryName ASC");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Use null coalescing (avoids undefined array key warnings)
     $title = $_POST['title'] ?? '';
     $authorId = $_POST['authorId'] ?? '';
     $categoryId = $_POST['categoryId'] ?? '';
@@ -22,13 +20,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("siis", $title, $authorId, $categoryId, $isbn);
 
         if ($stmt->execute()) {
-            $message = "✅ Book added successfully!";
+            $message = "Book added successfully!";
         } else {
-            $message = "❌ Error: " . $stmt->error;
+            $message = "Error: " . $stmt->error;
         }
         $stmt->close();
     } else {
-        $message = "⚠️ All fields are required!";
+        $message = "All fields are required!";
     }
 }
 ?>

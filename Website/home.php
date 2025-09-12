@@ -6,7 +6,8 @@
  </head>
  <body>
    <header class="header">
-     <div class="logo">📚 MyLibrary</div>
+     
+     <a href="home.php" class="logo"><button>📚 MyLibrary</button> </a>
      <div class="auth-buttons">
          <a href="login.php" class="btn-login"><button>Login</button> </a>
          <a href="register.php" class="btn-signUp"><button>Signup</button> </a>
@@ -16,9 +17,6 @@
    <nav class="navbar">
      <a href="home.php">Home</a>
      <a href="#section-about">About</a>
-     <a href="book.php">Books</a>
-     <a href="category.php">Category</a>
-     
    </nav>  
  
    <div class="hero">

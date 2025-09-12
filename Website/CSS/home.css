@@ -11,28 +11,15 @@ body {
   padding: 5px 10px 5px 10px;
   border-bottom: 1px solid #ddd;
 }
-
-.search-bar {
-  display: flex;
-  margin: 0px 0px;
-  width: 70px;
-  text-align: center;
-}
-
-.search-bar input {
-  flex: 1;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px 0 0 4px;
-}
-
-.search-bar button {
-  padding: 8px 15px;
-  border: none;
-  background: #ebb41d; 
-  color: #fff;
+.logo button {
+  background: none;
+  color: black;
   cursor: pointer;
-  border-radius: 0 4px 4px 0;
+  border: none;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  
 }
 
 .auth-buttons {

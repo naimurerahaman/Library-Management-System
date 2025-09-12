@@ -85,7 +85,7 @@ $categories_result = $conn->query("SELECT * FROM category ORDER BY categoryName 
                         echo "<td>" . htmlspecialchars($row['authorName']) . "</td>";
                         echo "<td>";
                         echo "<a href='editAuthor.php?id=" . $row['id'] . "' class='btn-edit'>Edit</a>";
-                        echo "<form method='POST' style='display:inline;' onsubmit='return confirm(\"Are you sure you want to delete this author?\");'>";
+                        echo "<form method='POST' style='display:inline;>";
                         echo "<input type='hidden' name='delete_id' value='" . $row['id'] . "'>";
                         echo "<input type='hidden' name='type' value='author'>";
                         echo "<button type='submit' class='btn-delete'>Delete</button>";
@@ -118,7 +118,7 @@ $categories_result = $conn->query("SELECT * FROM category ORDER BY categoryName 
                         echo "<td>" . htmlspecialchars($row['categoryName']) . "</td>";
                         echo "<td>";
                         echo "<a href='editCategory.php?id=" . $row['id'] . "' class='btn-edit'>Edit</a>";
-                        echo "<form method='POST' style='display:inline;' onsubmit='return confirm(\"Are you sure you want to delete this category?\");'>";
+                        echo "<form method='POST' style='display:inline;>";
                         echo "<input type='hidden' name='delete_id' value='" . $row['id'] . "'>";
                         echo "<input type='hidden' name='type' value='category'>";
                         echo "<button type='submit' class='btn-delete'>Delete</button>";

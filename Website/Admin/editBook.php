@@ -15,7 +15,7 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
     
     // Fetch current book details using a prepared statement
-    $stmt = $conn->prepare("SELECT * FROM book WHERE id = ?");
+    $stmt = $conn->prepare("SELECT * FROM books WHERE id = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -97,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h2>Edit Book</h2>
         <form method="POST">
             <label>Book Name:</label>
-            <input type="text" name="bookName" value="<?php echo htmlspecialchars($book['bookName']); ?>" required><br>
+            <input type="text" name="title" value="<?php echo htmlspecialchars($book['title']); ?>" required><br>
 
             <label>Author:</label>
             <select name="authorId" required>
@@ -123,11 +123,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ?>
             </select><br>
 
-            <label>Book Number:</label>
-            <input type="text" name="bookNumber" value="<?php echo htmlspecialchars($book['bookNumber']); ?>" required><br>
-
-            <label>Book Price:</label>
-            <input type="text" name="bookPrice" value="<?php echo htmlspecialchars($book['bookPrice']); ?>" required><br>
+            <label>ISBN:</label>
+            <input type="text" name="bookNumber" value="<?php echo htmlspecialchars($book['isbn']); ?>" required><br>
             
             <button type="submit">Update Book</button>
         </form>

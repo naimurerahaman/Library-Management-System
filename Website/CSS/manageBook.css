@@ -2,7 +2,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background: #f8f9fa;
+  background: #E0E0E0;
 }
 
 .sidebar {
@@ -91,17 +91,27 @@ th {
   color: white;
 }
 
-.btn { 
- text-decoration: none;
- margin: 2px; 
- border: none; 
- cursor: pointer; 
- transition-duration: 0.35s;
-}
-.edit { 
-    color: #3498db;
+.btn-edit {
+    display: inline-block; 
+    padding: 8px 16px;
+    margin-right: 5px; 
+    background-color: #3498db; 
+    color: #fff;
+    text-decoration: none; 
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.delete {  
-    color: rgb(255, 0, 0); 
+.btn-delete {
+    padding: 8px 16px;
+    background-color: #e74c3c; 
+    color: #fff;
+    border: none; 
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }

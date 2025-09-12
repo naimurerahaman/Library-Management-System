@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $entryName = $_POST['entry_name'];
 
     if (empty($entryType) || empty($entryName)) {
-        $message = "⚠️ Please select a type and enter a name.";
+        $message = " Please select a type and enter a name.";
     } else {
         if ($entryType === 'author') {
             $stmt = $conn->prepare("INSERT INTO author (authorName) VALUES (?)");
@@ -20,9 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($stmt)) {
             $stmt->bind_param("s", $entryName);
             if ($stmt->execute()) {
-                $message = "✅ " . ucfirst($entryType) . " added successfully!";
+                $message = " " . ucfirst($entryType) . " added successfully!";
             } else {
-                $message = "❌ Error: " . $stmt->error;
+                $message = " Error: " . $stmt->error;
             }
             $stmt->close();
         }
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 <head>
     <title>Add Category/Author</title>
-    <link rel="stylesheet" href="../CSS/addBook.css">
+    <link rel="stylesheet" href="../CSS/addCategory.css">
     <link rel="stylesheet" href="../CSS/sideBar.css">
 </head>
 <body>

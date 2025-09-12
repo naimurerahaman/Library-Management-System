@@ -1,102 +1,83 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f7fc;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
-
-
-.container {
-    background: #fff;
-    padding: 5px 10px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
-    width: 400px;
-    text-align: center;
-}
-
-
-.container h2 {
-    margin-bottom: 20px;
-    color: #333;
-}
-
-
-form label {
-    display: block;
-    text-align: left;
-    margin-bottom: 6px;
-    margin-right: 20px;
-    font-weight: bold;
-    color: #444;
-}
-
-
-form input[type="text"] {
-    width: 90%;
-    padding: 10px;
-    margin-left: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 14px;
-}
-
-form input[type="file"] {
-    position: absolute;
-    width: 220px;
-    padding: 10px;
-    margin-left: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 14px;
-}
-.coverPhoto {
-    margin-left: 270px;
-    border-radius: 6px;
-    box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
-}
-
-form button {
-    width: 100%;
-    padding: 12px;
-    margin-left: 10px;
-    margin-right: 20px;
-    background-color: #007BFF;
-    border: none;
-    border-radius: 6px;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-
-form button:hover {
-    background-color: #0056b3;
-}
-
-
-p {
-    margin-top: 10px;
-    color: red;
-    font-size: 14px;
+  font-family: Arial, sans-serif;
+  background-color: #E0E0E0;
+  margin: 0;
+  padding: 0;
 }
 .content {
-  width: 500px;
-  height: 100%;
-  margin: 50px auto;
-  background: white;
-  padding: 20px;
-  border-radius: 6px;
-  box-shadow: 0px 0px 8px rgba(0,0,0,0.1);
+    padding: 40px;
+    width: 450px; 
+    height: 500px;
+    margin: 50px auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+
 .content h2 {
-  text-align: center;
-  margin-top: 5px;
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 24px;
+}
+
+.content form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+
+.content label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+
+.content input[type="text"],
+.content select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box; 
+}
+
+
+.content input[type="text"]:focus,
+.content select:focus {
+    border-color: #007bff; 
+    outline: none;
+}
+
+
+.content button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745; 
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.content button[type="submit"]:hover {
+    background-color: #218838; 
+}
+
+
+.content p {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 16px;
+    color: #666;
 }

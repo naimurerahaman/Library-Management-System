@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <h2>Edit Category</h2>
     <form method="POST">
         <label for="categoryName">Category Name:</label><br>
-        <input type="text" id="categoryName" name="categoryName" value="<?php echo $row['name']; ?>"><br>
+        <input type="text" id="categoryName" name="categoryName" value="<?php echo $row['categoryName']; ?>"><br>
         <button type="submit">Update Category</button>
     </form>
 </body>

@@ -1,7 +1,7 @@
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  background: #f9f9f9;
+  background: #E0E0E0;
 }
 .logout {
     display: flex;
@@ -68,7 +68,7 @@ body {
 .container { 
     width: 400px; 
     margin: 150px auto; 
-    background-color: #e5e5e5;
+    background-color: #ffffff;
     padding: 20px; 
     border-radius: 8px; 
     box-shadow: 0 0 10px rgba(0,0,0,0.1); 
