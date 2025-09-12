@@ -9,35 +9,44 @@ if (!isset($_SESSION['user_id'])) {
 $name = $_SESSION['fullname'] ?? $_SESSION['username'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["borrow"])) {
-    $book_title = $_POST["book_title"];
-    $book_author = $_POST["book_author"];
-    $book_category = $_POST["book_category"];
-    $book_isbn = $_POST["book_isbn"];
-    if (empty($book_title) || empty($book_author) || empty($book_category) || empty($book_isbn)) {
+    $book_id = $_POST["book_id"];
+    $user_id = $_SESSION['user_id'];
+    $issue_date = date("Y-m-d");
+
+    if (empty($book_id)) {
         $error = "Book details are missing.";
     } else {
-        $stmt = $conn->prepare("INSERT INTO borrow (title, author, category, isbn) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $book_title, $book_author, $book_category, $book_isbn);
+        $check_stmt = $conn->prepare("SELECT COUNT(*) FROM issued_books WHERE student_id = ? AND book_id = ? AND status = 'borrowed'");
+        $check_stmt->bind_param("ii", $user_id, $book_id);
+        $check_stmt->execute();
+        $check_result = $check_stmt->get_result();
+        $is_borrowed = $check_result->fetch_row()[0] > 0;
+        $check_stmt->close();
 
-        if ($stmt->execute()) {
-            $success = "✅ Book Borrow Request Sent Successfully.";
+        if ($is_borrowed) {
+            $error = "❌ You have already borrowed this book.";
         } else {
-            $error = "❌ Error: " . $stmt->error;
+            $stmt = $conn->prepare("INSERT INTO issued_books (student_id, book_id, issue_date) VALUES (?, ?, ?)");
+            $stmt->bind_param("iis", $user_id, $book_id, $issue_date);
+
+            if ($stmt->execute()) {
+                $success = "✅ Book Borrow Request Sent Successfully.";
+            } else {
+                $error = "❌ Error: " . $stmt->error;
+            }
+            $stmt->close();
         }
-        $stmt->close();
     }
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Search & Borrow</title>
     <link rel="stylesheet" href="../CSS/searchbook.css" />
 </head>
-
 <body>
     <div class="navbar">
         <h2>WELCOME <span><?php echo htmlspecialchars($name); ?></span> !</h2>
@@ -66,37 +75,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["borrow"])) {
             <p class="error"><?php echo htmlspecialchars($error); ?></p>
             <div class="book-list" id="bookList">
                 <?php
-                $sql_books = "SELECT * FROM book ORDER BY bookName ASC";
+                $sql_books = "SELECT b.id, b.bookName, b.bookNumber, a.authorName, c.categoryName 
+                              FROM book b
+                              JOIN author a ON b.authorId = a.id
+                              JOIN category c ON b.categoryId = c.id
+                              ORDER BY b.bookName ASC";
                 $result_books = $conn->query($sql_books);
                 
                 if ($result_books->num_rows > 0) {
                     while ($row = $result_books->fetch_assoc()) {
-                        // Fetch the author's name using authorId
-                        $author_query = $conn->prepare("SELECT authorName FROM author WHERE id = ?");
-                        $author_query->bind_param("i", $row['authorId']);
-                        $author_query->execute();
-                        $author_result = $author_query->get_result();
-                        $author_name = $author_result->fetch_assoc()['authorName'] ?? 'Unknown Author';
-                        $author_query->close();
-                        
-                        // Fetch the category name using categoryId
-                        $category_query = $conn->prepare("SELECT categoryName FROM category WHERE id = ?");
-                        $category_query->bind_param("i", $row['categoryId']);
-                        $category_query->execute();
-                        $category_result = $category_query->get_result();
-                        $category_name = $category_result->fetch_assoc()['categoryName'] ?? 'Unknown Category';
-                        $category_query->close();
-
                         echo '<div class="book">';
                         echo '<div class="title">' . htmlspecialchars($row['bookName']) . '</div>';
-                        echo '<div class="author">' . htmlspecialchars($author_name) . '</div>';
-                        echo '<div class="category">' . htmlspecialchars($category_name) . '</div>';
+                        echo '<div class="author">' . htmlspecialchars($row['authorName']) . '</div>';
+                        echo '<div class="category">' . htmlspecialchars($row['categoryName']) . '</div>';
                         echo '<div class="isbn">' . htmlspecialchars($row['bookNumber']) . '</div>';
                         echo '<form method="post" action="">';
-                        echo '<input type="hidden" name="book_title" value="' . htmlspecialchars($row['bookName']) . '">';
-                        echo '<input type="hidden" name="book_author" value="' . htmlspecialchars($author_name) . '">';
-                        echo '<input type="hidden" name="book_category" value="' . htmlspecialchars($category_name) . '">';
-                        echo '<input type="hidden" name="book_isbn" value="' . htmlspecialchars($row['bookNumber']) . '">';
+                        echo '<input type="hidden" name="book_id" value="' . htmlspecialchars($row['id']) . '">';
                         echo '<button type="submit" name="borrow" class="borrow-btn">Borrow</button>';
                         echo '</form>';
                         echo '</div>';

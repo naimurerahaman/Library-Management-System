@@ -55,10 +55,9 @@ $user = $result->fetch_assoc();
   <div class="container-sidebar">
     <div class="sidebar">
       <a href="userdashboard.php" >Dashboard</a>
-      <a href="editprofile.php" >Edit Profile</a>
+      <a href="editprofile.php" class="active" >Edit Profile</a>
       <a href="searchbook.php">Search Book</a>
       <a href="viewborrowbook.php">View Borrow Book</a>
-      <a href="borrow.php">Borrow Book Request</a>
       <a href="returnbook.php">Return Book</a>
       <a href="feedback.php">Feedback</a>
     </div>
