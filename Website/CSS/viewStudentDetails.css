@@ -7,8 +7,9 @@ body {
 }
 
 /* Content area */
-.content {
-    margin-left: 220px; /* leave space for sidebar */
+.main-content {
+    margin-left: 220px; 
+    margin-top: 50px;
     padding: 20px;
 }
 

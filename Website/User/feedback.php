@@ -77,7 +77,8 @@ function test_input($data)
 
 <head>
     <title>User Feedback</title>
-    <link rel="stylesheet" href="../CSS/feedback.css">
+        <link rel="stylesheet" href="../CSS/bar.css">
+        <link rel="stylesheet" href="../CSS/feedback.css">
 </head>
 
 <body>
@@ -92,16 +93,16 @@ function test_input($data)
     <div class="sidebar">
       <a href="userdashboard.php" >Dashboard</a>
       <a href="editprofile.php" >Edit Profile</a>
-      <a href="searchbook.php">Search Book</a>
-      <a href="viewborrowbook.php">View Borrow Book</a>
-      <a href="returnbook.php">Return Book</a>
+      <a href="search_book.php">Search Book</a>
+      <a href="view_borrowed.php">View Borrow Book</a>
+      <a href="borrow_history.php">Borrow History</a>
       <a href="feedback.php" class="active">Feedback</a>
     </div>
 
     <form method="post" action="">
         <h3>Please provide your feedback below:</h3>
         <div class="container">
-            <label>Your Name</label><br>
+            <label>Your Username</label><br>
             <input type="text" name="name" value="<?php echo $name; ?>">
             <span class="error">* <?php echo $nameErr; ?></span>
             <br><br>

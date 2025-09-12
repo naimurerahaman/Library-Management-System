@@ -1,171 +1,80 @@
-/* General Body and Container Styles */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-/* Navbar Styles (reused) */
-.navbar {
-    background-color: #333;
-    color: #fff;
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.navbar h2 {
-    margin: 0;
-    font-size: 24px;
-}
-
-.navbar span {
-    color: #ffd700;
-    font-weight: bold;
-}
-
-.user-info {
-    display: flex;
-    align-items: center;
-}
-
-.user-info span {
-    margin-right: 20px;
-    font-size: 16px;
-}
-
-.btn-logout button {
-    background-color: #dc3545;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.btn-logout button:hover {
-    background-color: #c82333;
-}
-
-/* Main Content Layout */
-.container-sidebar {
-    display: flex;
-    flex: 1;
-    width: 100%;
-}
-
-/* Sidebar Styles (reused) */
-.sidebar {
-    width: 250px;
-    background-color: #2c3e50;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    height: 100vh;
-}
-
-.sidebar a {
-    color: #ecf0f1;
-    text-decoration: none;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.sidebar a:hover {
-    background-color: #34495e;
-}
-
-.sidebar a.active {
-    background-color: #e74c3c;
-    font-weight: bold;
-}
-
-/* Main Content and Table Styles */
+/* General table styling */
 .main-content {
-    flex: 1;
-    padding: 40px;
+     position: absolute;
+    padding: 10px;
+    margin-left: 500px;
+    margin-top: 50px;
 }
 
-.main-content h3 {
+.main-content h2 {
     text-align: center;
-    color: #333;
+    color: #2c3e50;
     margin-bottom: 30px;
     font-size: 28px;
+    font-weight: 600;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
     background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
 }
 
-table thead {
-    background-color: #333;
-    color: #fff;
-}
-
-table th,
-table td {
+th, td {
     padding: 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
 
-table th {
-    font-weight: bold;
+th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #555;
     text-transform: uppercase;
+    font-size: 14px;
 }
 
-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-table tbody tr:hover {
+tr:hover {
     background-color: #f1f1f1;
 }
 
-/* Return Button Styles */
-td button {
+/* Button styling */
+button[name="return"] {
     background-color: #3498db;
     color: #fff;
     border: none;
-    padding: 10px 15px;
+    padding: 8px 15px;
     border-radius: 5px;
-    font-size: 14px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-td button:hover {
+button[name="return"]:hover {
     background-color: #2980b9;
+    transform: translateY(-2px);
 }
 
-td form {
-    display: inline;
-}
 
-td[colspan="5"] {
+.message {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
     text-align: center;
-    font-style: italic;
-    color: #777;
-    padding: 20px;
+    font-weight: bold;
+}
+
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
 }

@@ -2,20 +2,24 @@
 include "config.php";
 $message = "";
 
-// Fetch authors and categories from the database for the dropdowns
+// Fetch authors and categories
 $authors_result = $conn->query("SELECT id, authorName FROM author ORDER BY authorName ASC");
 $categories_result = $conn->query("SELECT id, categoryName FROM category ORDER BY categoryName ASC");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $bookName = $_POST['bookName'];
-    $authorId = $_POST['authorId'];
-    $categoryId = $_POST['categoryId'];
-    $bookNumber = $_POST['bookNumber'];
-    $bookPrice = $_POST['bookPrice'];
-    
-    if (!empty($bookName) && !empty($authorId) && !empty($categoryId) && !empty($bookNumber) && !empty($bookPrice)) {
-        $stmt = $conn->prepare("INSERT INTO book (bookName, authorId, categoryId, bookNumber, bookPrice) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("siids", $bookName, $authorId, $categoryId, $bookNumber, $bookPrice);
+    // Use null coalescing (avoids undefined array key warnings)
+    $title = $_POST['title'] ?? '';
+    $authorId = $_POST['authorId'] ?? '';
+    $categoryId = $_POST['categoryId'] ?? '';
+    $isbn = $_POST['isbn'] ?? '';
+
+    if (!empty($title) && !empty($authorId) && !empty($categoryId) && !empty($isbn)) {
+        $stmt = $conn->prepare("INSERT INTO books (title, author, category, isbn) 
+                                VALUES (?, 
+                                        (SELECT authorName FROM author WHERE id=?), 
+                                        (SELECT categoryName FROM category WHERE id=?), 
+                                        ?)");
+        $stmt->bind_param("siis", $title, $authorId, $categoryId, $isbn);
 
         if ($stmt->execute()) {
             $message = "✅ Book added successfully!";
@@ -65,8 +69,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="content">
         <h2>Add a new book</h2>
         <form method="POST">
-            <label>Book Name:</label>
-            <input type="text" name="bookName" required>
+            <label>Book Title:</label>
+            <input type="text" name="title" required>
 
             <label>Author:</label>
             <select name="authorId" required>
@@ -92,11 +96,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ?>
             </select>
 
-            <label>Book Number:</label>
-            <input type="text" name="bookNumber" required>
-
-            <label>Book Price:</label>
-            <input type="text" name="bookPrice" required>
+            <label>ISBN:</label>
+            <input type="text" name="isbn" required>
 
             <button type="submit">Add Book</button>
         </form>

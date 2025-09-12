@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $book_id = $_POST['book_id'];
 
     // Insert into issued_books table
-    $sql = "INSERT INTO issued_books (student_id, book_id, status) VALUES ('$student_id', '$book_id', 'borrowed')";
+    $sql = "INSERT INTO borrow (user_id, book_id, status) VALUES ('$student_id', '$book_id', 'borrowed')";
     if ($conn->query($sql) === TRUE) {
         $message = "Book issued successfully!";
     } else {
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $students = $conn->query("SELECT id, fullname FROM register");
 
 // Fetch books for dropdown
-$books = $conn->query("SELECT id, bookName FROM book");
+$books = $conn->query("SELECT id, title FROM books");
 ?>
 
 <!DOCTYPE html>
@@ -73,7 +73,7 @@ $books = $conn->query("SELECT id, bookName FROM book");
             <select name="book_id" required>
                 <option value="">-- Select Book --</option>
                 <?php while ($row = $books->fetch_assoc()) { ?>
-                    <option value="<?php echo $row['id']; ?>"><?php echo $row['bookName']; ?></option>
+                    <option value="<?php echo $row['id']; ?>"><?php echo $row['title']; ?></option>
                 <?php } ?>
             </select>
 

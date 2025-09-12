@@ -2,10 +2,10 @@
 include "config.php"; // 🔹 Make sure this connects to your DB
 
 // 🔹 Count how many books are listed
-$bookCount = $conn->query("SELECT COUNT(*) AS total FROM book")->fetch_assoc()['total'];
+$bookCount = $conn->query("SELECT COUNT(*) AS total FROM books")->fetch_assoc()['total'];
 
 // 🔹 Count how many books are not returned yet
-$notReturnedCount = $conn->query("SELECT COUNT(*) AS total FROM issued_books WHERE status='borrowed'")->fetch_assoc()['total'];
+$notReturnedCount = $conn->query("SELECT COUNT(*) AS total FROM borrow WHERE status='borrowed'")->fetch_assoc()['total'];
 
 // 🔹 Count registered users
 $userCount = $conn->query("SELECT COUNT(*) AS total FROM register")->fetch_assoc()['total'];
@@ -48,8 +48,11 @@ $categoryCount = $conn->query("SELECT COUNT(*) AS total FROM category")->fetch_a
     </div>
 
     <div class="main-content">
+        <h2>Welcome to the Admin Panel Boss!</h2>
         <div class="students-section">
+            
             <div class="section-header">
+                
                 <h3>Dashboard</h3>
             </div>
             <table>

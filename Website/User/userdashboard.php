@@ -10,7 +10,8 @@ $name = $_SESSION['username'];
 <html>
 <head>
   <title>User Dashboard</title>
-  <link rel="stylesheet" href="../CSS/userdashboard.css">
+      <link rel="stylesheet" href="../CSS/bar.css">
+      <link rel="stylesheet" href="../CSS/userdashboard.css">
 </head>
 <body>
   <div class="navbar">
@@ -24,9 +25,9 @@ $name = $_SESSION['username'];
     <div class="sidebar">
       <a href="userdashboard.php" class="active">Dashboard</a>
       <a href="editprofile.php" >Edit Profile</a>
-      <a href="searchbook.php">Search Book</a>
-      <a href="viewborrowbook.php">View Borrow Book</a>
-      <a href="returnbook.php">Return Book</a>
+      <a href="search_book.php">Search Book</a>
+      <a href="view_borrowed.php">View Borrow Book</a>
+      <a href="borrow_history.php">Borrow History</a>
       <a href="feedback.php">Feedback</a>
     </div>
 
@@ -40,12 +41,7 @@ $name = $_SESSION['username'];
         <div class="dashboard-card search-card">
           <h3>Search Books</h3>
           <p>Find your next read from our extensive collection.</p>
-          <a href="searchbook.php" class="card-btn">Go to Search</a>
-        </div>
-        <div class="dashboard-card borrow-card">
-          <h3>Borrow Books</h3>
-          <p>Request to borrow a book with a few simple clicks.</p>
-          <a href="borrow.php" class="card-btn">Borrow a Book</a>
+          <a href="search_book.php" class="card-btn">Go to Search</a>
         </div>
         <div class="dashboard-card return-card">
           <h3>Return Books</h3>
@@ -55,7 +51,7 @@ $name = $_SESSION['username'];
         <div class="dashboard-card view-card">
           <h3>My Books</h3>
           <p>View the list of all books you've borrowed.</p>
-          <a href="viewborrowbook.php" class="card-btn">View My Books</a>
+          <a href="borrow_history.php" class="card-btn">View My Books</a>
         </div>
       </div>
     </div>

@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
   <nav class="navbar">
-    <a href="index.php">Home</a>
+    <a href="home.php">Home</a>
     <a href="book.php">Books</a>
     <a href="category.php">Category</a>
     <a href="request.php">Request Book</a>

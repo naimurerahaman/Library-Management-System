@@ -7,10 +7,6 @@
  <body>
    <header class="header">
      <div class="logo">📚 MyLibrary</div>
-     <div class="search-bar">
-       <input type="text" placeholder="Search entire store here...">
-       <button>🔍</button>
-     </div>
      <div class="auth-buttons">
          <a href="login.php" class="btn-login"><button>Login</button> </a>
          <a href="register.php" class="btn-signUp"><button>Signup</button> </a>
@@ -29,7 +25,6 @@
      <div class="hero-content">
        <h1>Access To Thousands Of Free Ebooks</h1>
        <p>Download Or Read Online</p>
-      <!-- <a href="login.php" class="btn get-started">Get Started</a> -->
        <a href="login.php" class="get-started"><button>Get Started</button></a>
      </div>
    </div>
