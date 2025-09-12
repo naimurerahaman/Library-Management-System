@@ -1,35 +1,35 @@
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  background: #E0E0E0;
+  background: #e0e0e0;
 }
 
 .head {
-   display: flex;
-   width: 500px;
-   margin-left: 250px;
+  display: flex;
+  width: 500px;
+  margin-left: 250px;
 }
-.head h2{
+.head h2 {
   color: #e67e22;
 }
 .logout {
-    display: flex;
-    width: 200px;
-    position: absolute;
-    top: 0px;
-    right: 0px;
+  display: flex;
+  width: 200px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
 }
 .btn-logout {
   display: flex;
   flex: auto;
-  gap: 15px;               
-  justify-content: center; 
+  gap: 15px;
+  justify-content: center;
   margin: 10px;
   text-decoration: none;
 }
 
 .btn-logout button {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -67,57 +67,57 @@ body {
   font-size: 16px;
 }
 .sidebar a:hover {
-    background-color: #e67e22; 
-    color: white;
+  background-color: #e67e22;
+  color: white;
 }
 
 .main-content {
-    padding: 20px;
-    margin-left: 230px;
-    margin-top: 60px;
+  padding: 20px;
+  margin-left: 230px;
+  margin-top: 60px;
 }
 
 h2 {
-    color: #2c3e50;
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    text-align: center;
+  color: #2c3e50;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .students-section {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .students-section .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
 .students-section h3 {
-    margin: 0;
-    color: #555;
-    font-size: 1.2rem;
+  margin: 0;
+  color: #555;
+  font-size: 1.2rem;
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
 }
 
 table th,
 table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
 }
 
 table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
+  background-color: #f2f2f2;
+  font-weight: bold;
 }

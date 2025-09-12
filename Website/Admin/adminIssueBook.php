@@ -1,15 +1,11 @@
 <?php
-include "config.php"; // DB connection
+include "config.php";
 session_start();
 
 $message = "";
-
-// Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $student_id = $_POST['student_id'];
     $book_id = $_POST['book_id'];
-
-    // Insert into issued_books table
     $sql = "INSERT INTO borrow (user_id, book_id, status) VALUES ('$student_id', '$book_id', 'borrowed')";
     if ($conn->query($sql) === TRUE) {
         $message = "Book issued successfully!";
@@ -17,21 +13,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $message = "Error: " . $conn->error;
     }
 }
-
-// Fetch students for dropdown
 $students = $conn->query("SELECT id, fullname FROM register");
-
-// Fetch books for dropdown
 $books = $conn->query("SELECT id, title FROM books");
 ?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Issue Book</title>
     <link rel="stylesheet" href="../CSS/sideBar.css">
     <link rel="stylesheet" href="../CSS/adminIssueBook.css">
 </head>
+
 <body>
     <div class="logout">
         <a href="logout.php" class="btn-logout"><button>Log Out</button></a>
@@ -47,9 +41,9 @@ $books = $conn->query("SELECT id, title FROM books");
             </div>
         </div>
         <div class="dropdown">
-            <a href="#" class="dropdown-btn">Categories & Authors</a> 
+            <a href="#" class="dropdown-btn">Categories & Authors</a>
             <div class="dropdown-content">
-                <a href="addCategoryAuthor.php" >Add</a>
+                <a href="addCategoryAuthor.php">Add</a>
                 <a href="manageCategoryAuthor.php">Manage</a>
             </div>
         </div>
@@ -82,6 +76,7 @@ $books = $conn->query("SELECT id, title FROM books");
 
         <p style="color: green;"><?php echo $message; ?></p>
     </div>
-     <script src="../JS/sideBar.js"></script>
+    <script src="../JS/sideBar.js"></script>
 </body>
+
 </html>

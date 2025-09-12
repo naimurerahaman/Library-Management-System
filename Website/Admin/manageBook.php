@@ -12,11 +12,13 @@ $result = $conn->query("SELECT * FROM books");
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Manage Books</title>
     <link rel="stylesheet" href="../CSS/manageBook.css">
     <link rel="stylesheet" href="../CSS/sideBar.css">
 </head>
+
 <body>
     <div class="logout">
         <a href="logout.php" class="btn-logout"><button>Log Out</button></a>
@@ -32,9 +34,9 @@ $result = $conn->query("SELECT * FROM books");
             </div>
         </div>
         <div class="dropdown">
-            <a href="#" class="dropdown-btn">Categories & Authors</a> 
+            <a href="#" class="dropdown-btn">Categories & Authors</a>
             <div class="dropdown-content">
-                <a href="addCategoryAuthor.php" >Add</a>
+                <a href="addCategoryAuthor.php">Add</a>
                 <a href="manageCategoryAuthor.php">Manage</a>
             </div>
         </div>
@@ -55,21 +57,22 @@ $result = $conn->query("SELECT * FROM books");
                 <th>Actions</th>
             </tr>
             <?php while ($row = $result->fetch_assoc()) { ?>
-            <tr>
-                <td><?php echo $row['id']; ?></td>
-                <td><?php echo $row['title']; ?></td>
-                <td><?php echo $row['author']; ?></td>
-                <td><?php echo $row['category']; ?></td>
-                <td><?php echo $row['isbn']; ?></td>
-                
-                <td>
-                    <a href="editBook.php?id=<?php echo $row['id']; ?>" class="btn edit">Edit</a> | 
-                    <a href="manageBook.php?delete=<?php echo $row['id']; ?>"class="btn delete">Delete</a>
-                </td>
-            </tr>
+                <tr>
+                    <td><?php echo $row['id']; ?></td>
+                    <td><?php echo $row['title']; ?></td>
+                    <td><?php echo $row['author']; ?></td>
+                    <td><?php echo $row['category']; ?></td>
+                    <td><?php echo $row['isbn']; ?></td>
+
+                    <td>
+                        <a href="editBook.php?id=<?php echo $row['id']; ?>" class="btn edit">Edit</a> |
+                        <a href="manageBook.php?delete=<?php echo $row['id']; ?>" class="btn delete">Delete</a>
+                    </td>
+                </tr>
             <?php } ?>
         </table>
     </div>
     <script src="../JS/sideBar.js"></script>
 </body>
+
 </html>

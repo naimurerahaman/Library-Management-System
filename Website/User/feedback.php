@@ -77,82 +77,82 @@ function test_input($data)
 
 <head>
     <title>User Feedback</title>
-        <link rel="stylesheet" href="../CSS/bar.css">
-        <link rel="stylesheet" href="../CSS/feedback.css">
+    <link rel="stylesheet" href="../CSS/bar.css">
+    <link rel="stylesheet" href="../CSS/feedback.css">
 </head>
 
 <body>
     <div class="navbar">
-  <h2>WELCOME <span><?php echo !empty($name) ? $name : "username"; ?></span> !</h2>
-  <div class="user-info">
-    <span><?php echo !empty($name) ? $name : "username"; ?></span>
-    <a href="logout.php" class="btn-logout"><button>Log Out</button></a>
-  </div>
-</div>
-  <div class="container-sidebar">
-    <div class="sidebar">
-      <a href="userdashboard.php" >Dashboard</a>
-      <a href="editprofile.php" >Edit Profile</a>
-      <a href="search_book.php">Search Book</a>
-      <a href="view_borrowed.php">View Borrow Book</a>
-      <a href="borrow_history.php">Borrow History</a>
-      <a href="feedback.php" class="active">Feedback</a>
-    </div>
-
-    <form method="post" action="">
-        <h3>Please provide your feedback below:</h3>
-        <div class="container">
-            <label>Your Username</label><br>
-            <input type="text" name="name" value="<?php echo $name; ?>">
-            <span class="error">* <?php echo $nameErr; ?></span>
-            <br><br>
-
-            <label>Email</label><br>
-            <input type="text" name="email" value="<?php echo $email; ?>">
-            <span class="error">* <?php echo $emailErr; ?></span>
-            <br><br>
-
-            <label>Feedback Rating</label><br>
-            <select name="rating">
-                <option value="">Select a rating</option>
-                <option value="excellent" <?php if ($rating == "excellent")
-                    echo "selected"; ?>>Excellent</option>
-                <option value="good" <?php if ($rating == "good")
-                    echo "selected"; ?>>Good</option>
-                <option value="average" <?php if ($rating == "average")
-                    echo "selected"; ?>>Average</option>
-                <option value="poor" <?php if ($rating == "poor")
-                    echo "selected"; ?>>Poor</option>
-            </select>
-            <span class="error">* <?php echo $ratingErr; ?></span>
-            <br><br>
-
-            <label>Feedback Category</label><br>
-            <select name="category">
-                <option value="">Select a category</option>
-                <option value="website" <?php if ($category == "website")
-                    echo "selected"; ?>>Website</option>
-                <option value="service" <?php if ($category == "service")
-                    echo "selected"; ?>>Service</option>
-                <option value="content" <?php if ($category == "content")
-                    echo "selected"; ?>>Content</option>
-                <option value="other" <?php if ($category == "other")
-                    echo "selected"; ?>>Other</option>
-            </select>
-            <span class="error">* <?php echo $categoryErr; ?></span>
-            <br><br>
-
-            <label>Your Message</label><br>
-            <textarea name="message" rows="5"><?php echo $message; ?></textarea>
-            <span class="error">* <?php echo $messageErr; ?></span>
-            <br><br>
-
-            <button type="submit" class="btn">Submit Feedback</button>
+        <h2>WELCOME <span><?php echo !empty($name) ? $name : "username"; ?></span> !</h2>
+        <div class="user-info">
+            <span><?php echo !empty($name) ? $name : "username"; ?></span>
+            <a href="logout.php" class="btn-logout"><button>Log Out</button></a>
         </div>
-    </form>
+    </div>
+    <div class="container-sidebar">
+        <div class="sidebar">
+            <a href="userdashboard.php">Dashboard</a>
+            <a href="editprofile.php">Edit Profile</a>
+            <a href="search_book.php">Search Book</a>
+            <a href="view_borrowed.php">View Borrow Book</a>
+            <a href="borrow_history.php">Borrow History</a>
+            <a href="feedback.php" class="active">Feedback</a>
+        </div>
 
-    <p class="success"><?php echo $success; ?></p>
-    <p class="error"><?php echo $error; ?></p>
+        <form method="post" action="">
+            <h3>Please provide your feedback below:</h3>
+            <div class="container">
+                <label>Your Username</label><br>
+                <input type="text" name="name" value="<?php echo $name; ?>">
+                <span class="error">* <?php echo $nameErr; ?></span>
+                <br><br>
+
+                <label>Email</label><br>
+                <input type="text" name="email" value="<?php echo $email; ?>">
+                <span class="error">* <?php echo $emailErr; ?></span>
+                <br><br>
+
+                <label>Feedback Rating</label><br>
+                <select name="rating">
+                    <option value="">Select a rating</option>
+                    <option value="excellent" <?php if ($rating == "excellent")
+                        echo "selected"; ?>>Excellent</option>
+                    <option value="good" <?php if ($rating == "good")
+                        echo "selected"; ?>>Good</option>
+                    <option value="average" <?php if ($rating == "average")
+                        echo "selected"; ?>>Average</option>
+                    <option value="poor" <?php if ($rating == "poor")
+                        echo "selected"; ?>>Poor</option>
+                </select>
+                <span class="error">* <?php echo $ratingErr; ?></span>
+                <br><br>
+
+                <label>Feedback Category</label><br>
+                <select name="category">
+                    <option value="">Select a category</option>
+                    <option value="website" <?php if ($category == "website")
+                        echo "selected"; ?>>Website</option>
+                    <option value="service" <?php if ($category == "service")
+                        echo "selected"; ?>>Service</option>
+                    <option value="content" <?php if ($category == "content")
+                        echo "selected"; ?>>Content</option>
+                    <option value="other" <?php if ($category == "other")
+                        echo "selected"; ?>>Other</option>
+                </select>
+                <span class="error">* <?php echo $categoryErr; ?></span>
+                <br><br>
+
+                <label>Your Message</label><br>
+                <textarea name="message" rows="5"><?php echo $message; ?></textarea>
+                <span class="error">* <?php echo $messageErr; ?></span>
+                <br><br>
+
+                <button type="submit" class="btn">Submit Feedback</button>
+            </div>
+        </form>
+
+        <p class="success"><?php echo $success; ?></p>
+        <p class="error"><?php echo $error; ?></p>
 </body>
 
 </html>

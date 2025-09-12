@@ -1,7 +1,7 @@
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  background: #E0E0E0;
+  background: #e0e0e0;
 }
 .sidebar {
   height: 100%;
@@ -20,28 +20,28 @@ body {
   font-size: 16px;
 }
 .sidebar a:hover {
-    background-color: #e67e22; 
-    color: white;
+  background-color: #e67e22;
+  color: white;
 }
 
 .logout {
-    display: flex;
-    width: 200px;
-    position: absolute;
-    top: 0px;
-    right: 0px;
+  display: flex;
+  width: 200px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
 }
 .btn-logout {
   display: flex;
   flex: auto;
-  gap: 15px;               
-  justify-content: center; 
+  gap: 15px;
+  justify-content: center;
   margin: 10px;
   text-decoration: none;
 }
 
 .btn-logout button {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -62,7 +62,6 @@ body {
 }
 
 .content {
-  
   padding: 40px;
   text-align: center;
   background: white;
@@ -72,8 +71,7 @@ body {
   width: 50%;
   margin: 0 auto;
   margin-top: 100px;
-  margin-left: 400px ;
-
+  margin-left: 400px;
 }
 
 .content h2 {

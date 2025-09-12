@@ -1,25 +1,19 @@
 <?php
-include "config.php"; // 🔹 Make sure this connects to your DB
-
-// 🔹 Count how many books are listed
+include "config.php";
 $bookCount = $conn->query("SELECT COUNT(*) AS total FROM books")->fetch_assoc()['total'];
-
-// 🔹 Count how many books are not returned yet
 $notReturnedCount = $conn->query("SELECT COUNT(*) AS total FROM borrow WHERE status='borrowed'")->fetch_assoc()['total'];
-
-// 🔹 Count registered users
 $userCount = $conn->query("SELECT COUNT(*) AS total FROM register")->fetch_assoc()['total'];
-
-// 🔹 Count listed categories
 $categoryCount = $conn->query("SELECT COUNT(*) AS total FROM category")->fetch_assoc()['total'];
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="../CSS/adminHome.css">
     <link rel="stylesheet" href="../CSS/sideBar.css">
 </head>
+
 <body>
     <div class="logout">
         <a href="logout.php" class="btn-logout"><button>Log Out</button></a>
@@ -27,7 +21,7 @@ $categoryCount = $conn->query("SELECT COUNT(*) AS total FROM category")->fetch_a
 
     <div class="sidebar">
         <a href="adminHome.php">Dashboard</a>
-        
+
         <div class="dropdown">
             <a href="#" class="dropdown-btn">Books</a>
             <div class="dropdown-content">
@@ -36,9 +30,9 @@ $categoryCount = $conn->query("SELECT COUNT(*) AS total FROM category")->fetch_a
             </div>
         </div>
         <div class="dropdown">
-            <a href="#" class="dropdown-btn">Categories & Authors</a> 
+            <a href="#" class="dropdown-btn">Categories & Authors</a>
             <div class="dropdown-content">
-                <a href="addCategoryAuthor.php" >Add</a>
+                <a href="addCategoryAuthor.php">Add</a>
                 <a href="manageCategoryAuthor.php">Manage</a>
             </div>
         </div>
@@ -50,9 +44,9 @@ $categoryCount = $conn->query("SELECT COUNT(*) AS total FROM category")->fetch_a
     <div class="main-content">
         <h2>Welcome to the Admin Panel Boss!</h2>
         <div class="students-section">
-            
+
             <div class="section-header">
-                
+
                 <h3>Dashboard</h3>
             </div>
             <table>
@@ -76,6 +70,7 @@ $categoryCount = $conn->query("SELECT COUNT(*) AS total FROM category")->fetch_a
         </div>
     </div>
 
-<script src="../JS/sideBar.js"></script>
+    <script src="../JS/sideBar.js"></script>
 </body>
+
 </html>

@@ -1,12 +1,11 @@
 <?php
 session_start();
-include "config.php";  
+include "config.php";
 
 $message = "";
 
 $adminEmail = "admin@example.com";
 
-// ✅ Check if admin exists in DB
 $sql = "SELECT * FROM adminpass WHERE email='$adminEmail' LIMIT 1";
 $result = $conn->query($sql);
 
@@ -14,7 +13,7 @@ if ($result && $result->num_rows > 0) {
     $adminData = $result->fetch_assoc();
     $oldPassword = $adminData['password'];
 } else {
-    $oldPassword = null; // if no row found
+    $oldPassword = null;
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -45,26 +44,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 if (isset($_SESSION['msg'])) {
     $message = $_SESSION['msg'];
-    unset($_SESSION['msg']); 
+    unset($_SESSION['msg']);
 }
 ?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Change Password</title>
-  <link rel="stylesheet" href="../CSS/adminChangePass.css">
-  <link rel="stylesheet" href="../CSS/sideBar.css">
+    <title>Change Password</title>
+    <link rel="stylesheet" href="../CSS/adminChangePass.css">
+    <link rel="stylesheet" href="../CSS/sideBar.css">
 </head>
-<body>  
-    </div>    
-        <div class="logout">
+
+<body>
+    </div>
+    <div class="logout">
         <a href="logout.php" class="btn-logout"><button>Log Out</button></a>
     </div>
 
     <div class="sidebar">
         <a href="adminHome.php">Dashboard</a>
-        
+
         <div class="dropdown">
             <a href="#" class="dropdown-btn">Books</a>
             <div class="dropdown-content">
@@ -73,9 +74,9 @@ if (isset($_SESSION['msg'])) {
             </div>
         </div>
         <div class="dropdown">
-            <a href="#" class="dropdown-btn">Categories & Authors</a> 
+            <a href="#" class="dropdown-btn">Categories & Authors</a>
             <div class="dropdown-content">
-                <a href="addCategoryAuthor.php" >Add</a>
+                <a href="addCategoryAuthor.php">Add</a>
                 <a href="manageCategoryAuthor.php">Manage</a>
             </div>
         </div>
@@ -83,23 +84,24 @@ if (isset($_SESSION['msg'])) {
         <a href="viewStudentDetails.php">View Student Details</a>
         <a href="changePassAdmin.php">Change Password</a>
     </div>
-  
-  <div class="container">
-    <h2>Change Password</h2>
-    <form method="post">
-      <label>Current Password</label>
-      <input type="password" name="current_password">
 
-      <label>New Password</label>
-      <input type="password" name="new_password">
+    <div class="container">
+        <h2>Change Password</h2>
+        <form method="post">
+            <label>Current Password</label>
+            <input type="password" name="current_password">
 
-      <label>Confirm Password</label>
-      <input type="password" name="confirm_password">
+            <label>New Password</label>
+            <input type="password" name="new_password">
 
-      <input type="submit" value="Change Password">
-    </form>
-    <div class="msg"><?php echo $message; ?></div>
-  </div>
-  <script src="../JS/sideBar.js"></script>
+            <label>Confirm Password</label>
+            <input type="password" name="confirm_password">
+
+            <input type="submit" value="Change Password">
+        </form>
+        <div class="msg"><?php echo $message; ?></div>
+    </div>
+    <script src="../JS/sideBar.js"></script>
 </body>
+
 </html>

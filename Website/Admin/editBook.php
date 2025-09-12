@@ -2,19 +2,17 @@
 include "config.php";
 session_start();
 
-// Redirect to login if not authenticated
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../login.php");
     exit();
 }
 
 $message = "";
-$book = null; // Initialize $book to avoid errors
+$book = null;
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    
-    // Fetch current book details using a prepared statement
+
     $stmt = $conn->prepare("SELECT * FROM books WHERE id = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
@@ -22,22 +20,18 @@ if (isset($_GET['id'])) {
     $book = $result->fetch_assoc();
     $stmt->close();
 
-    // If book is not found, redirect
     if (!$book) {
         header("Location: manageBook.php");
         exit();
     }
 } else {
-    // If no ID is provided, redirect
     header("Location: manageBook.php");
     exit();
 }
 
-// Fetch authors and categories for the dropdowns
 $authors_result = $conn->query("SELECT id, authorName FROM author ORDER BY authorName ASC");
 $categories_result = $conn->query("SELECT id, categoryName FROM category ORDER BY categoryName ASC");
 
-// Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $bookName = $_POST['bookName'];
     $authorId = $_POST['authorId'];
@@ -45,7 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $bookNumber = $_POST['bookNumber'];
     $bookPrice = $_POST['bookPrice'];
 
-    // Use a prepared statement for the update query
     $stmt = $conn->prepare("UPDATE book SET bookName = ?, authorId = ?, categoryId = ?, bookNumber = ?, bookPrice = ? WHERE id = ?");
     $stmt->bind_param("siidss", $bookName, $authorId, $categoryId, $bookNumber, $bookPrice, $id);
 
@@ -60,20 +53,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Edit Book</title>
     <link rel="stylesheet" href="../CSS/editBook.css">
     <link rel="stylesheet" href="../CSS/sideBar.css">
 </head>
+
 <body>
     <div class="logout">
         <a href="logout.php" class="btn-logout">
             <button>Log Out</button>
         </a>
     </div>
-    <div class="sidebar"> 
+    <div class="sidebar">
         <a href="adminHome.php">Dashboard</a>
-        
+
         <div class="dropdown">
             <a href="#" class="dropdown-btn">Books</a>
             <div class="dropdown-content">
@@ -82,9 +77,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
         <div class="dropdown">
-            <a href="#" class="dropdown-btn">Categories & Authors</a> 
+            <a href="#" class="dropdown-btn">Categories & Authors</a>
             <div class="dropdown-content">
-                <a href="addCategoryAuthor.php" >Add</a>
+                <a href="addCategoryAuthor.php">Add</a>
                 <a href="manageCategoryAuthor.php">Manage</a>
             </div>
         </div>
@@ -103,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <select name="authorId" required>
                 <?php
                 if ($authors_result->num_rows > 0) {
-                    while($row = $authors_result->fetch_assoc()) {
+                    while ($row = $authors_result->fetch_assoc()) {
                         $selected = ($row['id'] == $book['authorId']) ? 'selected' : '';
                         echo '<option value="' . htmlspecialchars($row['id']) . '" ' . $selected . '>' . htmlspecialchars($row['authorName']) . '</option>';
                     }
@@ -115,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <select name="categoryId" required>
                 <?php
                 if ($categories_result->num_rows > 0) {
-                    while($row = $categories_result->fetch_assoc()) {
+                    while ($row = $categories_result->fetch_assoc()) {
                         $selected = ($row['id'] == $book['categoryId']) ? 'selected' : '';
                         echo '<option value="' . htmlspecialchars($row['id']) . '" ' . $selected . '>' . htmlspecialchars($row['categoryName']) . '</option>';
                     }
@@ -125,11 +120,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label>ISBN:</label>
             <input type="text" name="bookNumber" value="<?php echo htmlspecialchars($book['isbn']); ?>" required><br>
-            
+
             <button type="submit">Update Book</button>
         </form>
         <p><?php echo htmlspecialchars($message); ?></p>
     </div>
     <script src="../JS/sideBar.js"></script>
 </body>
+
 </html>

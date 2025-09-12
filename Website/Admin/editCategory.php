@@ -15,9 +15,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Edit Category</title>
 </head>
+
 <body>
     <h2>Edit Category</h2>
     <form method="POST">
@@ -26,4 +28,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <button type="submit">Update Category</button>
     </form>
 </body>
+
 </html>

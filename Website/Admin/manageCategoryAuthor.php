@@ -4,7 +4,6 @@ session_start();
 
 $message = "";
 
-// Handle deletion
 if (isset($_POST['delete_id']) && isset($_POST['type'])) {
     $id = $_POST['delete_id'];
     $type = $_POST['type'];
@@ -18,25 +17,26 @@ if (isset($_POST['delete_id']) && isset($_POST['type'])) {
     if (isset($stmt)) {
         $stmt->bind_param("i", $id);
         if ($stmt->execute()) {
-            $message = "✅ " . ucfirst($type) . " deleted successfully!";
+            $message = " " . ucfirst($type) . " deleted successfully!";
         } else {
-            $message = "❌ Error: " . $stmt->error;
+            $message = " Error: " . $stmt->error;
         }
         $stmt->close();
     }
 }
 
-// Fetch all authors and categories
 $authors_result = $conn->query("SELECT * FROM author ORDER BY authorName ASC");
 $categories_result = $conn->query("SELECT * FROM category ORDER BY categoryName ASC");
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Manage Categories/Authors</title>
     <link rel="stylesheet" href="../CSS/manageBook.css">
     <link rel="stylesheet" href="../CSS/sideBar.css">
 </head>
+
 <body>
     <div class="logout">
         <a href="logout.php" class="btn-logout">
@@ -44,7 +44,7 @@ $categories_result = $conn->query("SELECT * FROM category ORDER BY categoryName 
         </a>
     </div>
 
-    <div class="sidebar"> 
+    <div class="sidebar">
         <a href="adminHome.php">Dashboard</a>
         <div class="dropdown">
             <a href="#" class="dropdown-btn">Books</a>
@@ -54,7 +54,7 @@ $categories_result = $conn->query("SELECT * FROM category ORDER BY categoryName 
             </div>
         </div>
         <div class="dropdown">
-            <a href="#" class="dropdown-btn">Categories & Authors</a> 
+            <a href="#" class="dropdown-btn">Categories & Authors</a>
             <div class="dropdown-content">
                 <a href="addCategoryAuthor.php">Add</a>
                 <a href="manageCategoryAuthor.php" class="active">Manage</a>
@@ -62,7 +62,7 @@ $categories_result = $conn->query("SELECT * FROM category ORDER BY categoryName 
         </div>
         <a href="adminIssueBook.php">Issue Books</a>
         <a href="viewStudentDetails.php">View Student Details</a>
-        <a href="changePassAdmin.php">Change Password</a>     
+        <a href="changePassAdmin.php">Change Password</a>
     </div>
 
     <div class="content">
@@ -135,4 +135,5 @@ $categories_result = $conn->query("SELECT * FROM category ORDER BY categoryName 
     </div>
     <script src="../JS/sideBar.js"></script>
 </body>
+
 </html>

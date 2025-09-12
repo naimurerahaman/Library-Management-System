@@ -2,7 +2,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background: #E0E0E0;
+  background: #e0e0e0;
 }
 .content {
   max-width: 1000px;
@@ -11,41 +11,42 @@ body {
   background: white;
   padding: 10px;
   border-radius: 6px;
-  box-shadow: 0px 0px 8px rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
 }
 
 .content h2 {
   text-align: center;
   margin-top: 5px;
 }
-table { 
-    width: 80%; 
-    margin: 20px auto; 
-    border-collapse: collapse; 
+table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
 }
 
-th, td { 
- border: 1px solid #ccc; 
- padding: 10px; 
- text-align: center; 
+th,
+td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
 }
 
-th { 
- background: #3498db;
+th {
+  background: #3498db;
   color: white;
 }
 
-.btn { 
- padding: 5px 10px; 
- margin: 2px; 
- border: none; 
- cursor: pointer; }
-
-.edit { 
-    color: rgb(94, 3, 252); 
+.btn {
+  padding: 5px 10px;
+  margin: 2px;
+  border: none;
+  cursor: pointer;
 }
 
-.delete {  
-    color: rgb(255, 0, 0); 
+.edit {
+  color: rgb(94, 3, 252);
 }
 
+.delete {
+  color: rgb(255, 0, 0);
+}

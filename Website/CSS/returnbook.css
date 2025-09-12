@@ -1,72 +1,71 @@
-
 .main-content {
-    flex: 1;
-    padding: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Align to the top */
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .return-card {
-    max-width: 500px;
-    width: 100%;
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .return-card h2 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 25px;
-    font-size: 28px;
+  text-align: center;
+  color: #333;
+  margin-bottom: 25px;
+  font-size: 28px;
 }
 
 .return-card form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-field {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .form-field label {
-    display: block;
-    font-weight: bold;
-    color: #555;
-    margin-bottom: 8px;
+  display: block;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 8px;
 }
 
 .form-field input[type="text"],
 .form-field input[type="date"] {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 16px;
-    transition: border-color 0.3s ease;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
 }
 
 .form-field input[type="text"]:focus,
 .form-field input[type="date"]:focus {
-    border-color: #3498db;
-    outline: none;
+  border-color: #3498db;
+  outline: none;
 }
 
 .btn {
-    background-color: #e74c3c;
-    color: #fff;
-    border: none;
-    padding: 15px 20px;
-    font-size: 18px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 15px 20px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .btn:hover {
-    background-color: #c0392b;
+  background-color: #c0392b;
 }

@@ -14,7 +14,7 @@ if (isset($_GET['token'])) {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $user_id = $row['user_id'];
-        
+
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reset_password'])) {
             $new_password = $_POST['new_password'];
             $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
@@ -27,7 +27,7 @@ if (isset($_GET['token'])) {
                 $delete_stmt = $conn->prepare("DELETE FROM password_resets WHERE token = ?");
                 $delete_stmt->bind_param("s", $token);
                 $delete_stmt->execute();
-                
+
                 $message = "<p style='color:green;'>Password has been reset successfully. You can now login.</p>";
             } else {
                 $message = "<p style='color:red;'>Error updating password.</p>";
@@ -45,10 +45,12 @@ if (isset($_GET['token'])) {
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Reset Password</title>
     <link rel="stylesheet" href="../CSS/login.css">
 </head>
+
 <body>
     <div class="login-container">
         <h2>Reset Password</h2>
@@ -65,4 +67,5 @@ if (isset($_GET['token'])) {
         <a href="../login.php">Back to Login</a>
     </div>
 </body>
+
 </html>
