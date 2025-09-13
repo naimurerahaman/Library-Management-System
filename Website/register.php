@@ -57,9 +57,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
   <nav class="navbar">
     <a href="home.php">Home</a>
-    <a href="book.php">Books</a>
-    <a href="category.php">Category</a>
-    <a href="request.php">Request Book</a>
   </nav>
 
   <div class="register-container">
@@ -86,11 +83,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <select name="gender">
         <option value="">Select</option>
         <option value="male" <?php if (isset($gender) && $gender == "male")
-          echo "selected"; ?>>Male</option>
+                                echo "selected"; ?>>Male</option>
         <option value="female" <?php if (isset($gender) && $gender == "female")
-          echo "selected"; ?>>Female</option>
+                                  echo "selected"; ?>>Female</option>
         <option value="other" <?php if (isset($gender) && $gender == "other")
-          echo "selected"; ?>>Other</option>
+                                echo "selected"; ?>>Other</option>
       </select>
 
       <label>Age*</label>

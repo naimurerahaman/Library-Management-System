@@ -1,3 +1,7 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .main-content {
   flex: 1;
   padding: 40px;

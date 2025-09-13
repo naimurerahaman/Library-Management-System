@@ -1,3 +1,9 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #e9ecef;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 .main-content {
   position: absolute;
   padding: 10px;

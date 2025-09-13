@@ -1,5 +1,5 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
   background: #e0e0e0;
@@ -110,9 +110,19 @@ th {
   background-color: #e74c3c;
   color: #fff;
   border: none;
+  text-decoration: none;
   border-radius: 5px;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
+
+.message {
+  text-align: center;
+  margin-left: 250px;
+  margin-top: 20px;
+  font-size: 16px;
+  color: green;
+}
+

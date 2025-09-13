@@ -2,13 +2,13 @@
 include "config.php";
 
 $id = $_GET['id'];
-$result = $conn->query("SELECT * FROM category WHERE id=$id");
+$result = $conn->query("SELECT * FROM author WHERE id=$id");
 $row = $result->fetch_assoc();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $newName = $_POST['categoryName'];
-    $conn->query("UPDATE category SET name='$newName' WHERE id=$id");
-    header("Location: manageCategory.php");
+    $newName = $_POST['authorName'];
+    $conn->query("UPDATE author SET authorName='$newName' WHERE id=$id");
+    header("Location: manageAuthor.php"); 
     exit();
 }
 ?>
@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 
 <head>
-    <title>Edit Category</title>
+    <title>Edit Author</title>
     <link rel="stylesheet" href="../CSS/sideBar.css">
     <link rel="stylesheet" href="../CSS/editCatAuth.css">
 </head>
@@ -51,11 +51,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <div class="main-content">
-    <h2>Edit Category</h2>
+    <h2>Edit Author</h2>
     <form method="POST">
-        <label for="categoryName">Category Name:</label><br>
-        <input type="text" id="categoryName" name="categoryName" value="<?php echo $row['categoryName']; ?>"><br>
-        <button type="submit">Update Category</button>
+        <label for="authorName">Author Name:</label><br>
+        <input type="text" id="authorName" name="authorName" value="<?php echo $row['authorName']; ?>"><br>
+        <button type="submit">Update Author</button>
     </form>
     </div>
 </body>

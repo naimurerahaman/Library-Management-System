@@ -1,56 +1,44 @@
 <?php
 include "config.php";
-session_start();
 
-if (!isset($_SESSION['user_id'])) {
-    header("Location: ../login.php");
-    exit();
-}
-
-$message = "";
-$book = null;
-
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-
-    $stmt = $conn->prepare("SELECT * FROM books WHERE id = ?");
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $book = $result->fetch_assoc();
-    $stmt->close();
-
-    if (!$book) {
-        header("Location: manageBook.php");
-        exit();
-    }
-} else {
+if (!isset($_GET['id'])) {
     header("Location: manageBook.php");
     exit();
 }
 
-$authors_result = $conn->query("SELECT id, authorName FROM author ORDER BY authorName ASC");
-$categories_result = $conn->query("SELECT id, categoryName FROM category ORDER BY categoryName ASC");
+$id = $_GET['id'];
+
+
+$result = $conn->query("SELECT * FROM books WHERE id=$id");
+if ($result->num_rows == 0) {
+    echo "Book not found!";
+    exit();
+}
+$row = $result->fetch_assoc();
+
+
+$authors = $conn->query("SELECT * FROM author");
+$categories = $conn->query("SELECT * FROM category");
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $bookName = $_POST['bookName'];
-    $authorId = $_POST['authorId'];
-    $categoryId = $_POST['categoryId'];
-    $bookNumber = $_POST['bookNumber'];
-    $bookPrice = $_POST['bookPrice'];
+    $title = $_POST['title'];
+    $author = $_POST['author'];
+    $category = $_POST['category'];
+    $isbn = $_POST['isbn'];
 
-    $stmt = $conn->prepare("UPDATE book SET bookName = ?, authorId = ?, categoryId = ?, bookNumber = ?, bookPrice = ? WHERE id = ?");
-    $stmt->bind_param("siidss", $bookName, $authorId, $categoryId, $bookNumber, $bookPrice, $id);
+    $stmt = $conn->prepare("UPDATE books SET title=?, author=?, category=?, isbn=? WHERE id=?");
+    $stmt->bind_param("sissi", $title, $author, $category, $isbn, $id);
 
     if ($stmt->execute()) {
         header("Location: manageBook.php");
         exit();
     } else {
-        $message = "Error: " . $stmt->error;
+        echo "Error updating book: " . $stmt->error;
     }
-    $stmt->close();
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -62,13 +50,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <div class="logout">
-        <a href="logout.php" class="btn-logout">
-            <button>Log Out</button>
-        </a>
+        <a href="logout.php" class="btn-logout"><button>Log Out</button></a>
     </div>
+
     <div class="sidebar">
         <a href="adminHome.php">Dashboard</a>
-
         <div class="dropdown">
             <a href="#" class="dropdown-btn">Books</a>
             <div class="dropdown-content">
@@ -91,41 +77,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="content">
         <h2>Edit Book</h2>
         <form method="POST">
-            <label>Book Name:</label>
-            <input type="text" name="title" value="<?php echo htmlspecialchars($book['title']); ?>" required><br>
+            <label for="title">Book Title:</label><br>
+            <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($row['title']); ?>" required><br><br>
 
-            <label>Author:</label>
-            <select name="authorId" required>
-                <?php
-                if ($authors_result->num_rows > 0) {
-                    while ($row = $authors_result->fetch_assoc()) {
-                        $selected = ($row['id'] == $book['authorId']) ? 'selected' : '';
-                        echo '<option value="' . htmlspecialchars($row['id']) . '" ' . $selected . '>' . htmlspecialchars($row['authorName']) . '</option>';
-                    }
-                }
-                ?>
-            </select><br>
+            <label for="author">Author:</label><br>
+            <select id="author" name="author" required>
+                <?php while ($a = $authors->fetch_assoc()) { ?>
+                    <option value="<?php echo $a['id']; ?>"
+                        <?php if ($a['id'] == $row['author']) echo "selected"; ?>>
+                        <?php echo htmlspecialchars($a['authorName']); ?>
+                    </option>
+                <?php } ?>
+            </select><br><br>
 
-            <label>Category:</label>
-            <select name="categoryId" required>
-                <?php
-                if ($categories_result->num_rows > 0) {
-                    while ($row = $categories_result->fetch_assoc()) {
-                        $selected = ($row['id'] == $book['categoryId']) ? 'selected' : '';
-                        echo '<option value="' . htmlspecialchars($row['id']) . '" ' . $selected . '>' . htmlspecialchars($row['categoryName']) . '</option>';
-                    }
-                }
-                ?>
-            </select><br>
+            <label for="category">Category:</label><br>
+            <select id="category" name="category" required>
+                <?php while ($c = $categories->fetch_assoc()) { ?>
+                    <option value="<?php echo $c['id']; ?>"
+                        <?php if ($c['id'] == $row['category']) echo "selected"; ?>>
+                        <?php echo htmlspecialchars($c['categoryName']); ?>
+                    </option>
+                <?php } ?>
+            </select><br><br>
 
-            <label>ISBN:</label>
-            <input type="text" name="bookNumber" value="<?php echo htmlspecialchars($book['isbn']); ?>" required><br>
+            <label for="isbn">Book Number (ISBN):</label><br>
+            <input type="text" id="isbn" name="isbn" value="<?php echo htmlspecialchars($row['isbn']); ?>" required><br><br>
 
             <button type="submit">Update Book</button>
         </form>
-        <p><?php echo htmlspecialchars($message); ?></p>
     </div>
-    <script src="../JS/sideBar.js"></script>
 </body>
+<script src="../JS/sideBar.js"></script>
 
 </html>

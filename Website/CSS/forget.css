@@ -6,23 +6,29 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.login-container {
+.container {
   background: #fff;
   padding: 30px 40px;
   border: 1px solid #ddd;
   border-radius: 6px;
-  width: 350px;
+  width: 500px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: left;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 150px;
+  margin-top: 50px;
 }
 
-.login-container h2 {
+.container h2 {
   text-align: center;
   margin-bottom: 25px;
   font-size: 24px;
+}
+.container h3 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 15px;
+    color: rgb(255, 94, 0);
 }
 
 label {
@@ -90,13 +96,34 @@ input[type="submit"]:hover {
   color: white;
 }
 
-.error {
-  color: red;
+.message {
+  
   margin-top: 10px;
   font-size: 14px;
+  text-align: center;
 }
-.success {
-  color: green;
-  margin-top: 10px;
-  font-size: 14px;
+
+
+.submit-btn {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  transition-duration: 0.3s;
+}
+.submit-btn:hover {
+  background-color: #2b652e;
+  transform: scale(1.05);
+}
+
+.link {
+    color: #e67e22;
+    font-size: 14px;
 }

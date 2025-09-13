@@ -65,8 +65,8 @@ $result = $conn->query("SELECT * FROM books");
                     <td><?php echo $row['isbn']; ?></td>
 
                     <td>
-                        <a href="editBook.php?id=<?php echo $row['id']; ?>" class="btn edit">Edit</a> |
-                        <a href="manageBook.php?delete=<?php echo $row['id']; ?>" class="btn delete">Delete</a>
+                        <a href="editBook.php?id=<?php echo $row['id']; ?>" class="btn-edit">Edit</a>
+                        <a href="manageBook.php?delete=<?php echo $row['id']; ?>" class="btn-delete" onclick="return confirm('Are you sure you want to delete this book?');">Delete</a>
                     </td>
                 </tr>
             <?php } ?>

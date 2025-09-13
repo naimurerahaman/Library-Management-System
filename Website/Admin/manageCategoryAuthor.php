@@ -67,7 +67,7 @@ $categories_result = $conn->query("SELECT * FROM category ORDER BY categoryName 
 
     <div class="content">
         <h2>Manage Authors</h2>
-        <p><?php echo htmlspecialchars($message); ?></p>
+       
         <table>
             <thead>
                 <tr>
@@ -78,25 +78,26 @@ $categories_result = $conn->query("SELECT * FROM category ORDER BY categoryName 
             </thead>
             <tbody>
                 <?php
-                if ($authors_result->num_rows > 0) {
-                    while ($row = $authors_result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . htmlspecialchars($row['id']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['authorName']) . "</td>";
-                        echo "<td>";
-                        echo "<a href='editAuthor.php?id=" . $row['id'] . "' class='btn-edit'>Edit</a>";
-                        echo "<form method='POST' style='display:inline;>";
-                        echo "<input type='hidden' name='delete_id' value='" . $row['id'] . "'>";
-                        echo "<input type='hidden' name='type' value='author'>";
-                        echo "<button type='submit' class='btn-delete'>Delete</button>";
-                        echo "</form>";
-                        echo "</td>";
-                        echo "</tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='3'>No authors found.</td></tr>";
-                }
-                ?>
+if ($authors_result->num_rows > 0) {
+    while ($row = $authors_result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>" . htmlspecialchars($row['id']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['authorName']) . "</td>";
+        echo "<td>";
+        echo "<a href='editAuthor.php?id=" . $row['id'] . "' class='btn-edit'>Edit</a> ";
+        echo "<form method='POST' style='display:inline;'>";
+        echo "<input type='hidden' name='delete_id' value='" . $row['id'] . "'>";
+        echo "<input type='hidden' name='type' value='author'>";
+        echo "<button type='submit' class='btn-delete' onclick=\"return confirm('Are you sure you want to delete this author?');\">Delete</button>";
+        echo "</form>";
+        echo "</td>";
+        echo "</tr>";
+    }
+} else {
+    echo "<tr><td colspan='3'>No authors found.</td></tr>";
+}
+?>
+
             </tbody>
         </table>
 
@@ -111,25 +112,26 @@ $categories_result = $conn->query("SELECT * FROM category ORDER BY categoryName 
             </thead>
             <tbody>
                 <?php
-                if ($categories_result->num_rows > 0) {
-                    while ($row = $categories_result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . htmlspecialchars($row['id']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['categoryName']) . "</td>";
-                        echo "<td>";
-                        echo "<a href='editCategory.php?id=" . $row['id'] . "' class='btn-edit'>Edit</a>";
-                        echo "<form method='POST' style='display:inline;>";
-                        echo "<input type='hidden' name='delete_id' value='" . $row['id'] . "'>";
-                        echo "<input type='hidden' name='type' value='category'>";
-                        echo "<button type='submit' class='btn-delete'>Delete</button>";
-                        echo "</form>";
-                        echo "</td>";
-                        echo "</tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='3'>No categories found.</td></tr>";
-                }
-                ?>
+if ($categories_result->num_rows > 0) {
+    while ($row = $categories_result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>" . htmlspecialchars($row['id']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['categoryName']) . "</td>";
+        echo "<td>";
+        echo "<a href='editCategory.php?id=" . $row['id'] . "' class='btn-edit'>Edit</a> ";
+        echo "<form method='POST' style='display:inline;'>";
+        echo "<input type='hidden' name='delete_id' value='" . $row['id'] . "'>";
+        echo "<input type='hidden' name='type' value='category'>";
+        echo "<button type='submit' class='btn-delete' onclick=\"return confirm('Are you sure you want to delete this category?');\">Delete</button>";
+        echo "</form>";
+        echo "</td>";
+        echo "</tr>";
+    }
+} else {
+    echo "<tr><td colspan='3'>No categories found.</td></tr>";
+}
+?>
+
             </tbody>
         </table>
     </div>

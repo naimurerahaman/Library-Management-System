@@ -1,77 +1,68 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #e0e0e0;
   margin: 0;
   padding: 0;
+  background: #e0e0e0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 .content {
-  padding: 40px;
-  width: 450px;
-  height: 500px;
-  margin: 50px auto;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-left: 220px;
+  padding: 30px;
+  background: #f9f9f9;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
 }
 
 .content h2 {
   text-align: center;
   color: #333;
-  margin-bottom: 25px;
-  font-size: 24px;
+  margin-bottom: 20px;
 }
 
 .content form {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  background: #fff;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .content label {
   display: block;
-  margin-bottom: 8px;
   font-weight: bold;
-  color: #555;
+  margin-bottom: 5px;
+  color: #444;
 }
 
 .content input[type="text"],
 .content select {
   width: 100%;
   padding: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  box-sizing: border-box;
+  border-radius: 6px;
+  font-size: 14px;
 }
 
 .content input[type="text"]:focus,
 .content select:focus {
   border-color: #007bff;
   outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
 }
 
-.content button[type="submit"] {
-  display: block;
+.content button {
   width: 100%;
   padding: 12px;
-  background-color: #28a745;
-  color: #fff;
+  background: #007bff;
+  color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background 0.3s;
 }
 
-.content button[type="submit"]:hover {
-  background-color: #218838;
-}
-
-.content p {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 16px;
-  color: #666;
+.content button:hover {
+  background: #0056b3;
 }
