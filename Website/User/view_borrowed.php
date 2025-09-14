@@ -23,9 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['return'])) {
     $stmt->bind_param("sii", $return_date, $borrow_id, $user_id);
 
     if ($stmt->execute()) {
-        $message = "✅ Book has been successfully returned!";
+        $message = "Book has been successfully returned!";
     } else {
-        $message = "❌ Error returning book: " . $stmt->error;
+        $message = "Error returning book: " . $stmt->error;
     }
     $stmt->close();
 }

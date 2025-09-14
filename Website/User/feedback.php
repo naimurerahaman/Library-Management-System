@@ -5,9 +5,9 @@ $name = $email = $rating = $category = $message = "";
 $nameErr = $emailErr = $ratingErr = $categoryErr = $messageErr = "";
 $success = $error = "";
 
-include "config.php";
 session_start();
 $success = $error = "";
+
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../login.php");
     exit();
@@ -57,10 +57,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 VALUES ('$name', '$email', '$rating', '$category', '$message')";
 
         if ($conn->query($sql) === TRUE) {
-            $success = "✅ Feedback submitted successfully!";
+            $success = "Feedback submitted successfully!";
             $name = $email = $rating = $category = $message = "";
         } else {
-            $error = "❌ Error: " . $conn->error;
+            $error = "Error: " . $conn->error;
         }
     }
 }
@@ -149,10 +149,9 @@ function test_input($data)
 
                 <button type="submit" class="btn">Submit Feedback</button>
             </div>
+            <p class="success"><?php echo $success; ?></p>
+             <p class="error"><?php echo $error; ?></p>
         </form>
-
-        <p class="success"><?php echo $success; ?></p>
-        <p class="error"><?php echo $error; ?></p>
 </body>
 
 </html>
