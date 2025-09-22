@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['forgot_password'])) {
 
 <body>
     <nav class="navbar">
-        <a href="index.php">Home</a>
+        <a href="index.html">Home</a>
     </nav>
 
     <div class="container">
