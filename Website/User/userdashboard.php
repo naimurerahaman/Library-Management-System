@@ -46,7 +46,7 @@ $name = $_SESSION['username'];
         <div class="dashboard-card return-card">
           <h3>Return Books</h3>
           <p>Process your book returns easily and quickly.</p>
-          <a href="returnbook.php" class="card-btn">Return a Book</a>
+          <a href="view_borrowed.php" class="card-btn">Return a Book</a>
         </div>
         <div class="dashboard-card view-card">
           <h3>My Books</h3>

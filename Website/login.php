@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
   <nav class="navbar">
-    <a href="home.php">Home</a>
+    <a href="index.php">Home</a>
   </nav>
 
   <div class="login-container">
